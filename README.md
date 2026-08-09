@@ -62,6 +62,8 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psq
 ```
 ### 6. Настройте базу данных для Zabbix сервера
 ```
+nano /etc/zabbix/zabbix_server.conf
+
 DBPassword=password
 ```
 ### 7. Запустите процессы Zabbix сервера и агента
