@@ -74,8 +74,8 @@ systemctl enable zabbix-server zabbix-agent apache2
 ### 8. Открываем веб версию в браузере http://host/zabbix
 
 
-`При необходимости прикрепитe сюда скриншоты
-![Панель Zabbix](img/1image.png)`
+
+![Панель Zabbix](img/1image.png)
 
 
 ---
