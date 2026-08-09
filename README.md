@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "`Название занятия`" - `Фамилия и имя студента`
+# Домашнее задание к занятию "`Система мониторинга Zabbix`" - `Туркменов Роман`
 
 
 ### Инструкция по выполнению домашнего задания
@@ -24,7 +24,7 @@
 
 ### Задание 1
 
-`Приведите ответ в свободной форме........`
+`Установите Zabbix Server с веб-интерфейсом.`
 
 1. `Заполните здесь этапы выполнения, если требуется ....`
 2. `Заполните здесь этапы выполнения, если требуется ....`
@@ -33,13 +33,40 @@
 5. `Заполните здесь этапы выполнения, если требуется ....`
 6. 
 
+### 1. Установка СУБД
 ```
-Поле для вставки кода...
-....
-....
-....
-....
+apt update && apt install postgresql -y
 ```
+### 2. Установка Zabbix
+```
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_6.0+ubuntu24.04_all.deb
+dpkg -i zabbix-release_latest_6.0+ubuntu24.04_all.deb
+apt update
+```
+### 3. Установка Zabbix сервер, веб-интерфейс и агент
+```
+apt install zabbix-server-pgsql zabbix-frontend-php php8.3-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+```
+### 4. Создание базы данных
+``` 
+sudo -u postgres createuser --pwprompt zabbix
+sudo -u postgres createdb -O zabbix zabbix
+```
+### 5. На хосте Zabbix сервера импортируйте начальную схему и данные. Вам будет предложено ввести недавно созданный пароль.
+```
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+```
+### 6. Настройте базу данных для Zabbix сервера
+```
+DBPassword=password
+```
+### 7. Запустите процессы Zabbix сервера и агента
+```
+systemctl restart zabbix-server zabbix-agent apache2
+systemctl enable zabbix-server zabbix-agent apache2
+```
+### 8. Открываем веб версию в браузере http://host/zabbix
+
 
 `При необходимости прикрепитe сюда скриншоты
 ![Название скриншота 1](ссылка на скриншот 1)`
