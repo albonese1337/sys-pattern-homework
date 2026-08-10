@@ -104,8 +104,7 @@ systemctl enable zabbix-server zabbix-agent apache2
 ....
 ```
 
-`При необходимости прикрепитe сюда скриншоты
-![Название скриншота 2](ссылка на скриншот 2)`
+![Monitoring > Latest data - данные от агента](img/2image.png)
 
 
 ---
